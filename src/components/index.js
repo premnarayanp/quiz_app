@@ -1,3 +1,5 @@
 import App from './App';
 import Navbar from './Navbar';
-export { App, Navbar };
+import QuestionCard from './QuestionCard';
+import TestActionBar from './TestActionBar';
+export { App, Navbar, QuestionCard, TestActionBar };

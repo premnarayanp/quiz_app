@@ -1,13 +1,16 @@
-//import '../styles/home.css';
-//import { useSelector, useDispatch } from 'react-redux';
+import '../styles/quizPreview.css';
+import { useSelector } from 'react-redux';
+import { QuestionCard } from '../components/index';
 
 function QuizPreview(props) {
-    //const quizReducer = useSelector((state) => state.quizReducer);
-    //const dispatch = useDispatch();
-    //const { quizStatus, showPopUp } = quizReducer;
+    const quizReducer = useSelector((state) => state.quizReducer);
+    const { quizStatus, selectedOptions } = quizReducer;
 
     return (
         <div className="QuizPreview" >
+            {
+                selectedOptions.map((option) => <QuestionCard currentQuestion={option.currentQuestion} />)
+            }
 
         </div>
     );

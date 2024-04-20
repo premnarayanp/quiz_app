@@ -1,4 +1,4 @@
-import { SET_CURRENT_QUESTION, SET_CURRENT_SELECTED_OPTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_QUIZ_HISTORY, SET_TOTAL_SCORE, SET_QUIZ_STATUS, ENABLE_SUBMIT_BTN } from './actionType';
+import { SET_CURRENT_QUESTION, SET_CURRENT_SELECTED_OPTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_TOTAL_SCORE, SET_QUIZ_STATUS, ENABLE_SUBMIT_BTN } from './actionType';
 
 //--------action creator functions for  Task-----------
 
@@ -9,25 +9,24 @@ export function setCurrentQuestion(questionIndex) {
     }
 }
 
-export function setCurrentSelectedOption(optionIndex) {
+export function setCurrentSelectedOption(option) {
     return {
         type: SET_CURRENT_SELECTED_OPTION,
-        data: optionIndex
+        data: option
     }
 }
+
+// export function setSelectedOption(option) {
+//     return {
+//         type: SET_SELECTED_OPTION,
+//         data: option
+//     }
+// }
 
 export function incrementViolationsCount(data) {
     return {
         type: INCREMENT_VIOLATIONS,
         //data: data
-    }
-}
-
-
-export function setQuizHistory(quizHistory) {
-    return {
-        type: SET_QUIZ_HISTORY,
-        data: quizHistory
     }
 }
 
