@@ -3,7 +3,7 @@
 //store items/token in local storage
 export const setItemInLocalStorage = (key, value) => {
     console.error('key==', key, "value====", value);
-    if (!key || !value) {
+    if (!key || (!value && value !== 0)) {
         return console.error('Can not store in LS');
     }
 

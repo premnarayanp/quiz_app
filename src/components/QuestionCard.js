@@ -2,7 +2,7 @@
 import '../styles/questionCard.css';
 import { useSelector, useDispatch } from 'react-redux';
 import questions from '../constants/questions.json';
-import { setCurrentSelectedOption } from '../redux/action/quizActions'
+import { setCurrentSelectedOption, enableSubmitBtn } from '../redux/action/quizActions'
 function QuestionCard(props) {
     const quizReducer = useSelector((state) => state.quizReducer);
     const dispatch = useDispatch();
@@ -12,6 +12,10 @@ function QuestionCard(props) {
 
     const handleOptionClick = (selectedAnswer, selectedOption) => {
 
+        // if (currentQuestion === questions.length - 1) {
+        //     dispatch(enableSubmitBtn(true));
+        // }
+
         dispatch(setCurrentSelectedOption({
             selectedAnswer: selectedAnswer,
             selectedOption: selectedOption,
@@ -19,8 +23,18 @@ function QuestionCard(props) {
         }));
     }
 
+    const logger = () => {
+        console.log("currentQuestion=", currentQuestion)
+        console.log("selectedOptions=", selectedOptions)
+        console.log("selectedOptions[currentQuestion]=", selectedOptions[currentQuestion])
+        //console.log("selectedOptions[currentQuestion].selectedOption", selectedOptions[currentQuestion].selectedOption)
+    }
+
     return (
         <div className="QuestionCard" >
+            {
+                logger()
+            }
             <div className='questionContainer'>
                 <p>
                     <span>Q.{currentQuestion + 1 + ":- "} </span>
@@ -31,19 +45,20 @@ function QuestionCard(props) {
             <div className='optionContainer'>
                 <span>Options:-</span>
 
-                {
-                    questions[currentQuestion].options.map((option, index) => (
-                        <div key={currentQuestion + index}>
-                            <label htmlFor='{currentQuestion}'>({index})</label>
-                            <input id='{currentQuestion}'
-                                type="radio"
-                                onClick={() => handleOptionClick(option, index)}
-                                checked={selectedOptions[currentQuestion] && selectedOptions[currentQuestion].selectedOption === index}
-                            />
-                            <span>{option}</span>
-                        </div>
-                    ))
-                }
+                <ol className='optionList' type="A" >
+                    {
+                        questions[currentQuestion].options.map((option, index) => (
+                            <li key={currentQuestion + index}>
+                                <input
+                                    type="radio"
+                                    onChange={() => handleOptionClick(option, index)}
+                                    checked={selectedOptions[currentQuestion] !== undefined && selectedOptions[currentQuestion].selectedOption === index}
+                                />
+                                <span>{option}</span>
+                            </li>
+                        ))
+                    }
+                </ol>
             </div>
         </div>
     );

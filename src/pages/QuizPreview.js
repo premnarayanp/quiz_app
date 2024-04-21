@@ -9,7 +9,7 @@ function QuizPreview(props) {
     return (
         <div className="QuizPreview" >
             {
-                selectedOptions.map((option) => <QuestionCard currentQuestion={option.currentQuestion} />)
+                selectedOptions.map((option, index) => <QuestionCard currentQuestion={option.currentQuestion} key={index} />)
             }
 
         </div>

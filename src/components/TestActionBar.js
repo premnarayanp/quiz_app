@@ -37,7 +37,7 @@ function TestActionBar(props) {
             <button className='backButton' onClick={() => handleBackBtnClick()}>Previous</button>
             {
                 questions.length - 1 === currentQuestion
-                    ? <button className='submitButton' onClick={() => submitTest()}>Submit</button>
+                    ? <button disabled={!selectedOptions[currentQuestion]} className='submitButton' onClick={() => submitTest()}>Submit</button>
                     : <button disabled={!selectedOptions[currentQuestion]} onClick={() => handleNextBtnClick()} className='nextButton' >Next</button>
             }
         </div>

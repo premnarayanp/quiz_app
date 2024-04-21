@@ -2,16 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { resetQuiz } from '../redux/action/quizActions'
+import { resetQuiz, setQuizStatus, setTotalScore } from '../redux/action/quizActions'
+import questions from '../constants/questions.json';
 
 export default function Navbar(props) {
     const quizReducer = useSelector((state) => state.quizReducer);
     const dispatch = useDispatch();
-    const { quizStatus, enableSubmitBtn } = quizReducer;
+    const { quizStatus, selectedOptions, } = quizReducer;
 
 
     const restartQuiz = () => {
         dispatch(resetQuiz());
+    }
+
+    const submitTest = () => {
+        let totalScore = 0;
+        selectedOptions.forEach(element => {
+            if (questions[element.currentQuestion].answer === element.selectedAnswer) {
+                totalScore += 10;
+            }
+        });
+
+        dispatch(setTotalScore(totalScore));
+        dispatch(setQuizStatus("Completed"));
     }
 
 
@@ -24,7 +37,7 @@ export default function Navbar(props) {
                             <span>Status:</span>
                             <span style={{ color: 'blue' }}> Active</span>
                         </div>
-                        <button className='quizSubmitBtn' disabled={enableSubmitBtn} >Submit</button>
+                        <button className='quizSubmitBtn' disabled={!selectedOptions[questions.length - 1]} onClick={() => submitTest()} >Submit</button>
                     </>
                     :
                     <>

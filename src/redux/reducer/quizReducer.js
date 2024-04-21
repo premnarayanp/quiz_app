@@ -34,9 +34,9 @@ export default function quizReducer(state = initialQuizState, action) {
             updatedOptions[action.data.currentQuestion] = action.data;
             setItemInLocalStorage(CURRENT_SELECTED_OPTIONS_KEY, updatedOptions);
 
-            console.log("action.data=", action.data)
-            console.log("currentQuestion=", action.data.currentQuestion)
-            console.log("updatedOptions=", updatedOptions)
+            // console.log("action.data=", action.data)
+            // console.log("state.selectedOptions=", state.selectedOptions)
+            // console.log("updatedOptions=", updatedOptions)
             // console.log("getItemFromLocalStorage=", getItemFromLocalStorage(CURRENT_SELECTED_OPTIONS_KEY))
             return {
                 ...state,
@@ -61,7 +61,7 @@ export default function quizReducer(state = initialQuizState, action) {
         case ENABLE_SUBMIT_BTN:
             return {
                 ...state,
-                enableSubmitBtn: true
+                enableSubmitBtn: false
             }
         case RESET_QUIZ:
             setItemInLocalStorage(CURRENT_QUESTION_KEY, 0);
