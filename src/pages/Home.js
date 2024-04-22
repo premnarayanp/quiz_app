@@ -2,6 +2,7 @@ import '../styles/home.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { setQuizStatus, resetQuiz } from '../redux/action/quizActions'
+import screenfull from 'screenfull';
 
 function Home(props) {
     const quizReducer = useSelector((state) => state.quizReducer);
@@ -10,10 +11,12 @@ function Home(props) {
 
     const restartQuiz = () => {
         dispatch(resetQuiz());
+        screenfull.request();
     }
 
     const startQuiz = () => {
         console.log("============startQuiz==========")
+        screenfull.request();
         dispatch(setQuizStatus("Active"));
         return (
             <Navigate to="/TestBoard" replace={true} />

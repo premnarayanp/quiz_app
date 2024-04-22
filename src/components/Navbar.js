@@ -8,8 +8,7 @@ import questions from '../constants/questions.json';
 export default function Navbar(props) {
     const quizReducer = useSelector((state) => state.quizReducer);
     const dispatch = useDispatch();
-    const { quizStatus, selectedOptions, } = quizReducer;
-
+    const { quizStatus, selectedOptions, violations } = quizReducer;
 
     const restartQuiz = () => {
         dispatch(resetQuiz());
@@ -37,6 +36,12 @@ export default function Navbar(props) {
                             <span>Status:</span>
                             <span style={{ color: 'blue' }}> Active</span>
                         </div>
+
+                        <div>
+                            <span>Violation</span>
+                            <span style={{ color: 'red' }}> {violations}</span>
+                        </div>
+
                         <button className='quizSubmitBtn' disabled={!selectedOptions[questions.length - 1]} onClick={() => submitTest()} >Submit</button>
                     </>
                     :
@@ -58,6 +63,7 @@ export default function Navbar(props) {
 
                     </>
             }
+
         </div>
     );
 }
