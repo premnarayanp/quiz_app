@@ -7,7 +7,7 @@ import screenfull from 'screenfull';
 function Home(props) {
     const quizReducer = useSelector((state) => state.quizReducer);
     const dispatch = useDispatch();
-    const { quizStatus, totalScore, showPopUp } = quizReducer;
+    const { quizStatus, totalScore, violations, showPopUp } = quizReducer;
 
     const restartQuiz = () => {
         dispatch(resetQuiz());
@@ -29,9 +29,10 @@ function Home(props) {
                 <thead>
                     <tr>
                         <th>Quiz Title</th>
-                        <th>Total Question</th>
-                        <th>Total Score</th>
-                        <th>Correct Answer</th>
+                        <th>Total Q.</th>
+                        <th>Score</th>
+                        <th>Correct Ans</th>
+                        <th>Violation</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -46,6 +47,7 @@ function Home(props) {
                                 <td>10</td>
                                 <td>{totalScore}/100</td>
                                 <td>{totalScore / 10}</td>
+                                <td>{violations}</td>
                                 <td>19/04/2024</td>
                                 <td>Completed</td>
                                 <td><button onClick={() => restartQuiz()}>Restart Quiz</button></td>

@@ -32,9 +32,9 @@ function QuestionCard(props) {
 
     return (
         <div className="QuestionCard" >
-            {
+            {/* {
                 logger()
-            }
+            } */}
             <div className='questionContainer'>
                 <p>
                     <span>Q.{currentQuestion + 1 + ":- "} </span>
@@ -43,13 +43,14 @@ function QuestionCard(props) {
             </div>
 
             <div className='optionContainer'>
-                <span>Options:-</span>
+                <span className='optionTitle'>Options:-</span>
 
                 <ol className='optionList' type="A" >
                     {
                         questions[currentQuestion].options.map((option, index) => (
                             <li key={currentQuestion + index}>
                                 <input
+                                    disabled={quizStatus !== "Active"}
                                     type="radio"
                                     onChange={() => handleOptionClick(option, index)}
                                     checked={selectedOptions[currentQuestion] !== undefined && selectedOptions[currentQuestion].selectedOption === index}

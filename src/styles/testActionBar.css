@@ -1,0 +1,7 @@
+.TestActionBar {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+    padding: 5px 50px;
+    /* background-color: aliceblue; */
+}

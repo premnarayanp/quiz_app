@@ -1,0 +1,48 @@
+.QuestionCard {
+    background-color: aliceblue;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.questionContainer {
+    background-color: rgb(180, 235, 159);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.questionContainer span {
+    font-size: 22px;
+    font-weight: 900;
+    color: black;
+}
+
+.questionContainer p {
+    font-size: 19px;
+    font-weight: 800;
+    color: grey;
+}
+
+
+/* ------------------Option Container------------------------- */
+
+.optionContainer .optionTitle {
+    font-size: 22px;
+    font-weight: 900;
+    color: red;
+    margin-bottom: 0;
+}
+
+.optionList {
+    /* background-color: aliceblue; */
+    /* padding: 5px; */
+}
+
+.optionList li {
+    border: solid 1px gray;
+    border-radius: 8px;
+    padding: 5px;
+    width: 100%;
+    background-color: rgb(220, 238, 177);
+    margin-top: 5px;
+}

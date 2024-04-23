@@ -1,5 +1,5 @@
 import { SET_CURRENT_QUESTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_CURRENT_SELECTED_OPTION, SET_QUIZ_STATUS, SET_TOTAL_SCORE, ENABLE_SUBMIT_BTN } from "../action/actionType";
-import { CURRENT_QUESTION_KEY, QUIZ_STATUS_KEY, CURRENT_SELECTED_OPTIONS_KEY, VIOLATIONS_KEY, TOTAL_SCORE_KEY } from '../../constants/constants';
+import { CURRENT_QUESTION_KEY, QUIZ_STATUS_KEY, CURRENT_SELECTED_OPTIONS_KEY, VIOLATIONS_KEY, TOTAL_SCORE_KEY, IS_FULL_SCREEN_KEY } from '../../constants/constants';
 import { getItemFromLocalStorage, setItemInLocalStorage, removeItemFromLocalStorage } from '../../constants/index'
 
 const initialQuizState = {
@@ -69,6 +69,7 @@ export default function quizReducer(state = initialQuizState, action) {
             setItemInLocalStorage(CURRENT_SELECTED_OPTIONS_KEY, []);
             setItemInLocalStorage(TOTAL_SCORE_KEY, 0);
             setItemInLocalStorage(QUIZ_STATUS_KEY, "Active");
+            setItemInLocalStorage(IS_FULL_SCREEN_KEY, true)
             return {
                 ...state,
                 currentQuestion: 0,

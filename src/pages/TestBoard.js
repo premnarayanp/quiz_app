@@ -10,7 +10,7 @@ import { IS_FULL_SCREEN_KEY } from '../constants/constants';
 import { getItemFromLocalStorage, setItemInLocalStorage } from '../constants/index';
 
 function TestBoard(props) {
-    const [isFullscreen, setIsFullscreen] = useState(JSON.parse(getItemFromLocalStorage(IS_FULL_SCREEN_KEY)) || true);
+    const [isFullscreen, setIsFullscreen] = useState(JSON.parse(getItemFromLocalStorage(IS_FULL_SCREEN_KEY)));
 
     const dispatch = useDispatch();
     const quizReducer = useSelector((state) => state.quizReducer);
@@ -20,6 +20,8 @@ function TestBoard(props) {
         if (screenfull.isEnabled) {
             screenfull.on('change', () => {
                 // Check if currently in fullscreen
+
+                console.log("isFullscreen on change=", isFullscreen);
                 if (!screenfull.isFullscreen) {
                     setItemInLocalStorage(IS_FULL_SCREEN_KEY, false)
                     setIsFullscreen(false);
@@ -52,10 +54,11 @@ function TestBoard(props) {
         )
     }
 
+    console.log("isFullscreen=", isFullscreen);
     if (!isFullscreen) {
         return (
-            <div>
-                <p>You have exited fullscreen, please enter again to continue the quiz.</p>
+            <div className='notAFullScreen'>
+                <p >You have exited fullscreen, please enter again to continue the quiz.</p>
                 <button onClick={handleFullscreen}>Enter Fullscreen</button>
             </div>
         )
