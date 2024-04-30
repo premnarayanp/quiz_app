@@ -1,7 +1,7 @@
 .QuestionCard {
     background-color: aliceblue;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -49,14 +49,45 @@
     border-radius: 8px;
     padding: 10px 5px;
     width: 100%;
+    position: relative;
     /* background-color: rgb(220, 238, 177); */
     background-color: white;
     margin-top: 10px;
     /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19); */
 }
 
+
+/* input[type=radio].selectOptions {
+    accent-color: red;
+    background-color: red;
+} */
+
+
+/* .input[disabled] {
+    background-color: red;
+    accent-color: red;
+    border: 0px solid red;
+} */
+
 .optionText {
     font-size: 16px;
     font-weight: 600;
     color: gray;
+}
+
+
+/* ===========================Wrong Right Indicator========================= */
+
+.wrongRightIcon {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.wrongRightIcon img {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
 }

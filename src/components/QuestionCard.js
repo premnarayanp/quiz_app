@@ -48,14 +48,35 @@ function QuestionCard(props) {
                 <ol className='optionList' type="A" >
                     {
                         questions[currentQuestion].options.map((option, index) => (
-                            <li key={currentQuestion + index}>
+                            <li key={currentQuestion + index} >
                                 <input
+                                    className='selectOptions'
                                     disabled={quizStatus !== "Active"}
                                     type="radio"
                                     onChange={() => handleOptionClick(option, index)}
                                     checked={selectedOptions[currentQuestion] !== undefined && selectedOptions[currentQuestion].selectedOption === index}
                                 />
                                 <span className='optionText'>{option}</span>
+
+                                {
+                                    quizStatus !== "Active" &&
+                                    <>
+                                        {
+                                            questions[currentQuestion].correctOptionIndex === index &&
+                                            <div className='wrongRightIcon rightIcon'>
+                                                <img src={require('../assets/right.png')} alt="right" />
+                                            </div>
+                                        }
+
+                                        {
+                                            selectedOptions[currentQuestion].selectedOption === index && selectedOptions[currentQuestion].selectedOption !== questions[currentQuestion].correctOptionIndex &&
+                                            <div className='wrongRightIcon wrongIcon'>
+                                                <img src={require('../assets/wrong.jpg')} alt="wrong" />
+                                            </div>
+                                        }
+                                    </>
+
+                                }
                             </li>
                         ))
                     }
@@ -65,3 +86,5 @@ function QuestionCard(props) {
     );
 }
 export default QuestionCard
+
+// style={{ backgroundColor: questions[currentQuestion].correctOptionIndex === index ? "rgb(161, 248, 161)" : "white" }}
