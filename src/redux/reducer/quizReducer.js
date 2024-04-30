@@ -1,4 +1,4 @@
-import { SET_CURRENT_QUESTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_CURRENT_SELECTED_OPTION, SET_QUIZ_STATUS, SET_TOTAL_SCORE, ENABLE_SUBMIT_BTN } from "../action/actionType";
+import { SET_CURRENT_QUESTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_CURRENT_SELECTED_OPTION, SET_QUIZ_STATUS, SET_TOTAL_SCORE, ENABLE_SUBMIT_BTN, SET_FULL_SCREEN } from "../action/actionType";
 import { CURRENT_QUESTION_KEY, QUIZ_STATUS_KEY, CURRENT_SELECTED_OPTIONS_KEY, VIOLATIONS_KEY, TOTAL_SCORE_KEY, IS_FULL_SCREEN_KEY } from '../../constants/constants';
 import { getItemFromLocalStorage, setItemInLocalStorage, removeItemFromLocalStorage } from '../../constants/index'
 
@@ -8,6 +8,7 @@ const initialQuizState = {
     totalScore: JSON.parse(getItemFromLocalStorage(TOTAL_SCORE_KEY)) || 0,
     quizStatus: getItemFromLocalStorage(QUIZ_STATUS_KEY) || 'NotScheduled',
     selectedOptions: JSON.parse(getItemFromLocalStorage(CURRENT_SELECTED_OPTIONS_KEY)) || [],//selected option Array
+    isFullScreen: JSON.parse(getItemFromLocalStorage(IS_FULL_SCREEN_KEY)) || false,
     showPopUp: false,
     enableSubmitBtn: false,
 };
@@ -24,6 +25,7 @@ export default function quizReducer(state = initialQuizState, action) {
 
         case INCREMENT_VIOLATIONS:
             setItemInLocalStorage(VIOLATIONS_KEY, state.violations + 1);
+            // console.log("violations==", state.violations);
             return {
                 ...state,
                 violations: state.violations + 1,
@@ -34,10 +36,6 @@ export default function quizReducer(state = initialQuizState, action) {
             updatedOptions[action.data.currentQuestion] = action.data;
             setItemInLocalStorage(CURRENT_SELECTED_OPTIONS_KEY, updatedOptions);
 
-            // console.log("action.data=", action.data)
-            // console.log("state.selectedOptions=", state.selectedOptions)
-            // console.log("updatedOptions=", updatedOptions)
-            // console.log("getItemFromLocalStorage=", getItemFromLocalStorage(CURRENT_SELECTED_OPTIONS_KEY))
             return {
                 ...state,
                 selectedOptions: updatedOptions
@@ -56,6 +54,13 @@ export default function quizReducer(state = initialQuizState, action) {
             return {
                 ...state,
                 quizStatus: action.data
+            }
+        case SET_FULL_SCREEN:
+            setItemInLocalStorage(IS_FULL_SCREEN_KEY, action.data);
+            //console.log("SET_FULL_SCREEN==", action.data);
+            return {
+                ...state,
+                isFullScreen: action.data
             }
 
         case ENABLE_SUBMIT_BTN:
@@ -77,6 +82,7 @@ export default function quizReducer(state = initialQuizState, action) {
                 totalScore: 0,
                 selectedOptions: [],
                 quizStatus: "Active",
+                isFullScreen: true,
             }
         default:
             return state;

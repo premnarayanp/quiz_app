@@ -1,4 +1,4 @@
-import { SET_CURRENT_QUESTION, SET_CURRENT_SELECTED_OPTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_TOTAL_SCORE, SET_QUIZ_STATUS, ENABLE_SUBMIT_BTN } from './actionType';
+import { SET_CURRENT_QUESTION, SET_CURRENT_SELECTED_OPTION, INCREMENT_VIOLATIONS, RESET_QUIZ, SET_TOTAL_SCORE, SET_QUIZ_STATUS, ENABLE_SUBMIT_BTN, SET_FULL_SCREEN } from './actionType';
 
 //--------action creator functions for  Task-----------
 
@@ -43,6 +43,15 @@ export function setQuizStatus(status) {
         data: status
     }
 }
+
+export function setFullScreen(val) {
+    return {
+        type: SET_FULL_SCREEN,
+        data: val
+    }
+}
+
+
 
 export function enableSubmitBtn(val) {
     return {

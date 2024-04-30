@@ -9,3 +9,5 @@ export const SET_TOTAL_SCORE = 'SET_TOTAL_SCORE';
 export const SET_QUIZ_STATUS = 'SET_QUIZ_STATUS';
 export const ENABLE_SUBMIT_BTN = 'ENABLE_SUBMIT_BTN';
 export const RESET_QUIZ = 'RESET_QUIZ';
+export const SET_FULL_SCREEN = 'SET_FULL_SCREEN';
+

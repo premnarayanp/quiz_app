@@ -5,34 +5,30 @@ import { Navigate } from 'react-router-dom';
 import screenfull from 'screenfull';
 import { useEffect, useState } from 'react';
 
-import { incrementViolationsCount } from "../redux/action/quizActions";
-import { IS_FULL_SCREEN_KEY } from '../constants/constants';
-import { getItemFromLocalStorage, setItemInLocalStorage } from '../constants/index';
+import { incrementViolationsCount, setFullScreen } from "../redux/action/quizActions";
 
 function TestBoard(props) {
-    const [isFullscreen, setIsFullscreen] = useState(JSON.parse(getItemFromLocalStorage(IS_FULL_SCREEN_KEY)));
-
     const dispatch = useDispatch();
     const quizReducer = useSelector((state) => state.quizReducer);
-    const { currentQuestion, quizStatus, showPopUp } = quizReducer;
+    const { currentQuestion, isFullScreen, quizStatus } = quizReducer;
 
     useEffect(() => {
-        if (screenfull.isEnabled) {
-            screenfull.on('change', () => {
-                // Check if currently in fullscreen
+        // Prevent multiple call of screenfull.on(), Otherwise when you restart  quiz again then this screenfull.on() event presented  then  it called  2 or multiple time, so violation count increased  randomly of quiz completed count time time 
+        const handleChange = () => {
+            // Handle fullscreen change here
+            if (!screenfull.isFullscreen) {
+                dispatch(setFullScreen(false));
+                dispatch(incrementViolationsCount());
+            }
+        };
 
-                console.log("isFullscreen on change=", isFullscreen);
-                if (!screenfull.isFullscreen) {
-                    setItemInLocalStorage(IS_FULL_SCREEN_KEY, false)
-                    setIsFullscreen(false);
-                    dispatch(incrementViolationsCount());
-                }
-            });
+        if (screenfull.isEnabled) {
+            screenfull.on('change', handleChange);
         }
 
         return () => {
             if (screenfull.isEnabled) {
-                screenfull.off('change');
+                screenfull.off('change', handleChange);
 
             }
         };
@@ -42,8 +38,7 @@ function TestBoard(props) {
     const handleFullscreen = () => {
         if (screenfull.isEnabled) {
             screenfull.request();
-            setItemInLocalStorage(IS_FULL_SCREEN_KEY, true)
-            setIsFullscreen(true);
+            dispatch(setFullScreen(true))
         }
     };
 
@@ -54,8 +49,7 @@ function TestBoard(props) {
         )
     }
 
-    console.log("isFullscreen=", isFullscreen);
-    if (!isFullscreen) {
+    if (!isFullScreen) {
         return (
             <div className='notAFullScreen'>
                 <p >You have exited fullscreen, please enter again to continue the quiz.</p>

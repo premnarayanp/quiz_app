@@ -3,7 +3,7 @@
     height: 100%;
     box-sizing: border-box;
     padding: 20px;
-    background-color: pink;
+    /* background-color: pink; */
     overflow: auto;
     overflow-x: hidden;
     white-space: nowrap;

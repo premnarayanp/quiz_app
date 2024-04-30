@@ -2,13 +2,16 @@
     background-color: aliceblue;
     padding: 10px;
     margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .questionContainer {
-    background-color: rgb(180, 235, 159);
+    /* background-color: rgb(180, 235, 159); */
+    background-color: rgb(219, 252, 200);
     padding: 5px;
     border-radius: 8px;
     margin-bottom: 30px;
+    border: solid 1px gray;
 }
 
 .questionContainer span {
@@ -36,13 +39,24 @@
 .optionList {
     /* background-color: aliceblue; */
     /* padding: 5px; */
+    padding: 10px 50px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .optionList li {
     border: solid 1px gray;
     border-radius: 8px;
-    padding: 5px;
+    padding: 10px 5px;
     width: 100%;
-    background-color: rgb(220, 238, 177);
-    margin-top: 5px;
+    /* background-color: rgb(220, 238, 177); */
+    background-color: white;
+    margin-top: 10px;
+    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.optionText {
+    font-size: 16px;
+    font-weight: 600;
+    color: gray;
 }

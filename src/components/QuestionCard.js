@@ -55,7 +55,7 @@ function QuestionCard(props) {
                                     onChange={() => handleOptionClick(option, index)}
                                     checked={selectedOptions[currentQuestion] !== undefined && selectedOptions[currentQuestion].selectedOption === index}
                                 />
-                                <span>{option}</span>
+                                <span className='optionText'>{option}</span>
                             </li>
                         ))
                     }
