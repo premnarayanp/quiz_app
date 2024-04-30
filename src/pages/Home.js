@@ -59,6 +59,7 @@ function Home(props) {
                                 <td>10</td>
                                 <td>_</td>
                                 <td>_</td>
+                                <td>_</td>
                                 <td>anyTime</td>
                                 <td>Not Completed</td>
                                 <td><button onClick={() => startQuiz()}>Start Quiz</button></td>
